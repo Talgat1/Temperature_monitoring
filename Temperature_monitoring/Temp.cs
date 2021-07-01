@@ -79,6 +79,7 @@ namespace Temperature_monitoring
                 int norma = 0;
                 int summ_time = 0;
                 string vid_rb;
+                
                 //int data_time_10 = 0;
 
                 Max_temp = Convert.ToInt32(Temp_max1.Text);
@@ -87,7 +88,7 @@ namespace Temperature_monitoring
                 Min_time = Convert.ToInt32(Time_min1.Text);
                 //data_time_10 = Convert.ToInt32(Data_time1.Text);
                 vid_rb = Convert.ToString(Vid1.Text);
-
+                int porog_ment = 0;
 
 
 
@@ -106,11 +107,6 @@ namespace Temperature_monitoring
                     OutputTable["Time", OutputTable.Rows.Count - 1].Value = j+1;
                     norma = arr[j];
                     OutputTable["Fact", OutputTable.Rows.Count - 1].Value = norma;
-                    /*if (Temp_min1 == null || Time_min1 == null)
-                    {
-                        OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
-                        OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
-                    }*/
                     
                     if (vid_rb.Contains("Минтай"))
                     {
@@ -119,7 +115,9 @@ namespace Temperature_monitoring
                         {
                             OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
                             OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
-                        }
+                            porog_ment = porog_ment + 10;
+
+                        }                       
                         else
                         {
                             OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
@@ -127,11 +125,16 @@ namespace Temperature_monitoring
                             OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
                             OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
                         }
-
                     }
+                    if (porog_ment > Max_time)
+                    {
+                        MessageBox.Show("Порог максмально допустимой температуры превышен на " + porog_ment + " минут");
+                    }
+
 
                     else if (vid_rb.Contains("Семга"))
                     {
+                        
                         if (norma > Max_temp)
                         {
                             OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
@@ -144,42 +147,18 @@ namespace Temperature_monitoring
                         }
                         else
                         {
-
                             OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
                             OutputTable["Fact", OutputTable.Rows.Count - 1].Value = null;
                             OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
                             OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
                         }
-
                     }
-                    /*if (norma > Max_temp)
-                    {
-                        OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
-                        OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
-                    }
-                    if (norma < Min_temp)
-                    {
-                        OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Min_temp;
-                        OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Min_temp;
-                    }                   
-                    else
-                    {
-
-                        OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
-                        OutputTable["Fact", OutputTable.Rows.Count - 1].Value = null;
-                        OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
-                        OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
-                    } */
-
                 }
-
-
             }
             catch
             {
                 MessageBox.Show("Ошибка!");
             }
-
         }
 
         private void Data_time1_TextChanged(object sender, EventArgs e)
