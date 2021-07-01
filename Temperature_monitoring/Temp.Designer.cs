@@ -44,6 +44,8 @@
             this.Temp_fish = new System.Windows.Forms.Label();
             this.Temp_fish1 = new System.Windows.Forms.TextBox();
             this.Raschet = new System.Windows.Forms.Button();
+            this.OutputTable = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.OutputTable)).BeginInit();
             this.SuspendLayout();
             // 
             // Vid
@@ -166,7 +168,7 @@
             // 
             this.Temp_fish1.Location = new System.Drawing.Point(51, 253);
             this.Temp_fish1.Name = "Temp_fish1";
-            this.Temp_fish1.Size = new System.Drawing.Size(100, 20);
+            this.Temp_fish1.Size = new System.Drawing.Size(623, 20);
             this.Temp_fish1.TabIndex = 14;
             // 
             // Raschet
@@ -179,11 +181,20 @@
             this.Raschet.UseVisualStyleBackColor = true;
             this.Raschet.Click += new System.EventHandler(this.Raschet_Click);
             // 
+            // OutputTable
+            // 
+            this.OutputTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OutputTable.Location = new System.Drawing.Point(792, 34);
+            this.OutputTable.Name = "OutputTable";
+            this.OutputTable.Size = new System.Drawing.Size(440, 500);
+            this.OutputTable.TabIndex = 16;
+            // 
             // Temp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1427, 570);
+            this.Controls.Add(this.OutputTable);
             this.Controls.Add(this.Raschet);
             this.Controls.Add(this.Temp_fish1);
             this.Controls.Add(this.Temp_fish);
@@ -202,6 +213,7 @@
             this.Controls.Add(this.Vid);
             this.Name = "Temp";
             this.Text = "Temp";
+            ((System.ComponentModel.ISupportInitialize)(this.OutputTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,6 +237,7 @@
         private System.Windows.Forms.Label Temp_fish;
         private System.Windows.Forms.TextBox Temp_fish1;
         private System.Windows.Forms.Button Raschet;
+        private System.Windows.Forms.DataGridView OutputTable;
     }
 }
 
