@@ -145,6 +145,7 @@
             this.Data_time1.Name = "Data_time1";
             this.Data_time1.Size = new System.Drawing.Size(100, 20);
             this.Data_time1.TabIndex = 11;
+            this.Data_time1.TextChanged += new System.EventHandler(this.Data_time1_TextChanged);
             // 
             // Data_time
             // 

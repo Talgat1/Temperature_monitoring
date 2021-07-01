@@ -78,6 +78,7 @@ namespace Temperature_monitoring
             {
                 int norma = 0;
                 int summ_time = 0;
+                string vid_rb;
                 //int data_time_10 = 0;
 
                 Max_temp = Convert.ToInt32(Temp_max1.Text);
@@ -85,6 +86,10 @@ namespace Temperature_monitoring
                 Max_time = Convert.ToInt32(Time_max1.Text);
                 Min_time = Convert.ToInt32(Time_min1.Text);
                 //data_time_10 = Convert.ToInt32(Data_time1.Text);
+                vid_rb = Convert.ToString(Vid1.Text);
+
+
+
 
                 string[] str = Temp_fish1.Text.Split(' ');
                 int[] arr = new int[str.Length];
@@ -98,10 +103,56 @@ namespace Temperature_monitoring
                 for (int j = 0; j < summ_time; j++)
                 {
                     OutputTable.Rows.Add();
-                    OutputTable["Time", OutputTable.Rows.Count - 1].Value = j + 1;
+                    OutputTable["Time", OutputTable.Rows.Count - 1].Value = j+1;
                     norma = arr[j];
                     OutputTable["Fact", OutputTable.Rows.Count - 1].Value = norma;
-                    if (norma > Max_temp)
+                    /*if (Temp_min1 == null || Time_min1 == null)
+                    {
+                        OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
+                        OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
+                    }*/
+                    
+                    if (vid_rb.Contains("Минтай"))
+                    {
+                        Max_temp = Min_temp;
+                        if (norma > Max_temp)
+                        {
+                            OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
+                            OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
+                        }
+                        else
+                        {
+                            OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Fact", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
+                        }
+
+                    }
+
+                    else if (vid_rb.Contains("Семга"))
+                    {
+                        if (norma > Max_temp)
+                        {
+                            OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
+                            OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
+                        }
+                        if (norma < Min_temp)
+                        {
+                            OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Min_temp;
+                            OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Min_temp;
+                        }
+                        else
+                        {
+
+                            OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Fact", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
+                            OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
+                        }
+
+                    }
+                    /*if (norma > Max_temp)
                     {
                         OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Max_temp;
                         OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Max_temp;
@@ -110,15 +161,15 @@ namespace Temperature_monitoring
                     {
                         OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = Min_temp;
                         OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = norma - Min_temp;
-                    }
+                    }                   
                     else
                     {
+
                         OutputTable["Time", OutputTable.Rows.Count - 1].Value = null;
                         OutputTable["Fact", OutputTable.Rows.Count - 1].Value = null;
                         OutputTable["Dopusc", OutputTable.Rows.Count - 1].Value = null;
                         OutputTable["Otclon", OutputTable.Rows.Count - 1].Value = null;
-                        //norma = arr[j+1];
-                    }
+                    } */
 
                 }
 
@@ -128,6 +179,15 @@ namespace Temperature_monitoring
             {
                 MessageBox.Show("Ошибка!");
             }
+
+        }
+
+        private void Data_time1_TextChanged(object sender, EventArgs e)
+        {
+            //Data_time1.Text = String.Format("Вы выбрали: {0}", Data_time1.Value.ToLongTimeString());
+            //Data_time1.ShowUpDown = true;
+            //Data_time1.CustomFormat = "hh:mm";
+            //Data_time1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 
         }
     }
